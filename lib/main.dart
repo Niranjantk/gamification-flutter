@@ -24,10 +24,30 @@ class MyApp extends StatelessWidget {
 
 class Tiled extends FlameGame {
   late TiledComponent map;
+  late Player player;
 
   @override
   Future<void> onLoad() async {
     map = await TiledComponent.load('level1.tmx', Vector2.all(32));
     add(map);
+
+    player = Player();
+    add(player);
+  }
+}
+
+class Player extends SpriteAnimationComponent with HasGameRef<Tiled> {
+  @override
+  Future<void> onLoad() async {
+    animation = await game.loadSpriteAnimation(
+      'idle.png',
+      SpriteAnimationData.sequenced(
+        amount: 10,
+        stepTime: 0.1,
+        textureSize: Vector2(46, 55),
+      ),
+    );
+    size = Vector2(46, 55);
+    position = Vector2(100, 100); // Default position, can be adjusted
   }
 }
