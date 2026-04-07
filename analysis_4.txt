@@ -1,0 +1,55 @@
+Analyzing niranjanworld...                                      
+
+   info • Parameter 'startingPosition' could be a super parameter • lib/components/bottom_decoration.dart:5:3 • use_super_parameters
+   info • The parameter name 'gameSize' doesn't match the name 'size' in the overridden method • lib/components/bottom_decoration.dart:16:29 • avoid_renaming_method_parameters
+   info • The parameter name 'gameSize' doesn't match the name 'size' in the overridden method • lib/components/crane/cable.dart:41:29 • avoid_renaming_method_parameters
+   info • Don't invoke 'print' in production code • lib/components/crane/cable.dart:110:5 • avoid_print
+   info • Unnecessary override • lib/components/crane/top_piece.dart:17:8 • unnecessary_overrides
+   info • Don't invoke 'print' in production code • lib/components/fading_text.dart:36:5 • avoid_print
+   info • The import of 'package:rive/rive.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flame_rive/flame_rive.dart' • lib/components/falling_box.dart:11:8 • unnecessary_import
+   info • The variable name 'BOX_COUNT' isn't a lowerCamelCase identifier • lib/components/falling_box.dart:39:14 • non_constant_identifier_names
+   info • The constant name 'SPEED' isn't a lowerCamelCase identifier • lib/components/falling_box.dart:42:23 • constant_identifier_names
+   info • The constant name 'CUBE_WEIGHT' isn't a lowerCamelCase identifier • lib/components/falling_box.dart:43:23 • constant_identifier_names
+   info • Parameters ''imgPath', 'startingPosition', 'collisionBox', 'positionCollisionBox', and 'animationName'' could be super parameters • lib/components/player.dart:13:3 • use_super_parameters
+   info • The parameter name 'c' doesn't match the name 'canvas' in the overridden method • lib/components/player.dart:30:22 • avoid_renaming_method_parameters
+   info • The import of 'package:flame/game.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flame/components.dart' • lib/components/player_stack.dart:4:8 • unnecessary_import
+warning • Unused import: 'package:niranjanworld/components/bottom_decoration.dart' • lib/components/player_stack.dart:6:8 • unused_import
+   info • Don't invoke 'print' in production code • lib/components/player_stack.dart:78:9 • avoid_print
+   info • Parameters ''startingPosition' and 'animationName'' could be super parameters • lib/components/players/lamp.dart:6:3 • use_super_parameters
+   info • Missing type annotation • lib/components/players/lamp.dart:7:14 • strict_top_level_inference
+   info • Missing type annotation • lib/components/players/lamp.dart:8:5 • strict_top_level_inference
+   info • Parameters ''startingPosition' and 'animationName'' could be super parameters • lib/components/players/printer.dart:6:3 • use_super_parameters
+   info • Missing type annotation • lib/components/players/printer.dart:7:14 • strict_top_level_inference
+   info • Missing type annotation • lib/components/players/printer.dart:8:5 • strict_top_level_inference
+   info • Parameters ''startingPosition' and 'animationName'' could be super parameters • lib/components/players/tibi.dart:6:3 • use_super_parameters
+   info • Missing type annotation • lib/components/players/tibi.dart:7:14 • strict_top_level_inference
+   info • Missing type annotation • lib/components/players/tibi.dart:8:5 • strict_top_level_inference
+   info • Parameters ''startingPosition' and 'animationName'' could be super parameters • lib/components/players/toaster.dart:6:3 • use_super_parameters
+   info • Missing type annotation • lib/components/players/toaster.dart:7:14 • strict_top_level_inference
+   info • Missing type annotation • lib/components/players/toaster.dart:8:5 • strict_top_level_inference
+   info • Parameters ''startingPosition' and 'animationName'' could be super parameters • lib/components/players/washer.dart:6:3 • use_super_parameters
+   info • Missing type annotation • lib/components/players/washer.dart:7:14 • strict_top_level_inference
+   info • Missing type annotation • lib/components/players/washer.dart:8:5 • strict_top_level_inference
+   info • The member 'onGameResize' overrides an inherited member but isn't annotated with '@override' • lib/components/score_board.dart:43:8 • annotate_overrides
+   info • The parameter name 'gameSize' doesn't match the name 'size' in the overridden method • lib/components/score_board.dart:43:29 • avoid_renaming_method_parameters
+warning • Unused import: 'package:firebase_core/firebase_core.dart' • lib/main.dart:1:8 • unused_import
+   info • Use interpolation to compose strings and values • lib/main.dart:55:26 • prefer_interpolation_to_compose_strings
+   info • Don't invoke 'print' in production code • lib/overlays/leaderboard_menu.dart:60:13 • avoid_print
+   info • Use interpolation to compose strings and values • lib/overlays/leaderboard_menu.dart:60:19 • prefer_interpolation_to_compose_strings
+   info • Use interpolation to compose strings and values • lib/overlays/leaderboard_menu.dart:62:17 • prefer_interpolation_to_compose_strings
+   info • Don't invoke 'print' in production code • lib/overlays/leaderboard_menu.dart:69:9 • avoid_print
+   info • Don't invoke 'print' in production code • lib/overlays/leaderboard_menu.dart:78:9 • avoid_print
+   info • Invalid use of a private type in a public API • lib/overlays/main_menu.dart:12:3 • library_private_types_in_public_api
+   info • Parameter 'key' could be a super parameter • lib/overlays/utils/hover_image.dart:9:9 • use_super_parameters
+   info • Invalid use of a private type in a public API • lib/overlays/utils/hover_image.dart:18:3 • library_private_types_in_public_api
+   info • The local variable '_index' starts with an underscore • lib/overlays/utils/smart_button.dart:16:22 • no_leading_underscores_for_local_identifiers
+   info • The local variable '_url' starts with an underscore • lib/overlays/utils/smart_button.dart:43:27 • no_leading_underscores_for_local_identifiers
+warning • The value of the local variable '_url' isn't used • lib/overlays/utils/smart_button.dart:43:27 • unused_local_variable
+   info • Function literals shouldn't be passed to 'forEach' • lib/screens/game_loop.dart:72:36 • avoid_function_literals_in_foreach_calls
+   info • Don't invoke 'print' in production code • lib/screens/game_loop.dart:122:5 • avoid_print
+   info • The constant name 'CUBE_WEIGHT' isn't a lowerCamelCase identifier • lib/static/constants.dart:2:23 • constant_identifier_names
+   info • The constant name 'SPEED' isn't a lowerCamelCase identifier • lib/static/constants.dart:3:23 • constant_identifier_names
+   info • The constant name 'SHOW_COLLISION_BOX' isn't a lowerCamelCase identifier • lib/static/constants.dart:4:21 • constant_identifier_names
+   info • The constant name 'PLAY_MUSIC' isn't a lowerCamelCase identifier • lib/static/constants.dart:5:21 • constant_identifier_names
+
+51 issues found. (ran in 2.1s)
