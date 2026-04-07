@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pacman/home/bord_widget.dart';
 import 'package:pacman/home/button_widgets.dart';
 import 'package:pacman/logic/maze_generator_dfs.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -11,74 +12,113 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  static const int numberInRow = 11; // columns
-  static const int rows = 15; // rows
-  final List<int> startAndEnding = [144, 20];
-  int pacmanPosition = 144;
-  late List<int> boardData; // auto-generated walls
- String turtlePositons = "right";
+
   @override
   void initState() {
     super.initState();
-    boardData = generateMaze(rows, numberInRow); // generate walls
-  }
 
-  void moveUp() {
-    setState(() {
-      int newPos = pacmanPosition - numberInRow;
-      if (!boardData.contains(newPos)) pacmanPosition = newPos;
-      turtlePositons = "up";
-    });
-  }
+    // Start timer + connect Game Over popup
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final maze = Provider.of<MazeGeneratorLogicProvider>(context, listen: false);
 
-  void moveDown() {
-    setState(() {
-      int newPos = pacmanPosition + numberInRow;
-      if (!boardData.contains(newPos)) pacmanPosition = newPos;
-      turtlePositons = "down";
-    });
-  }
+      // When timer reaches 0 → show popup
+      maze.onTimeOver = () {
+        gameTimerOver();
+      };
 
-  void moveLeft() {
-    setState(() {
-      int newPos = pacmanPosition - 1;
-      if (!boardData.contains(newPos)) pacmanPosition = newPos;
-      turtlePositons = "left";
-    });
-  }
-
-  void moveRight() {
-    setState(() {
-      int newPos = pacmanPosition + 1;
-      if (!boardData.contains(newPos)) pacmanPosition = newPos;
-      turtlePositons = "right";
+      maze.startGameTimer(); // Start only once
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    final maze = Provider.of<MazeGeneratorLogicProvider>(context);
+
     return Scaffold(
-      backgroundColor: Colors.grey[900],
-      body: Column(
-        children: [
-          PackManBoard(
-            
-            turtlePositons : turtlePositons,
-            startAndEnding: startAndEnding,
-            pacmanPosition: pacmanPosition,
-            numberInRow: numberInRow,
-            rows: rows,
-            boardData: boardData,
+      appBar: AppBar(
+        title: const Text("Pacman Game"),
+        backgroundColor: Colors.grey[900],
+        actions: [
+          // Score
+          Row(
+            children: [
+              const Icon(Icons.star, color: Colors.yellow),
+              Text(" Score: ${maze.score}", style: const TextStyle(color: Colors.white)),
+              const SizedBox(width: 20),
+            ],
           ),
 
-          PacManControlButton(
-            up: moveUp,
-            down: moveDown,
-            left: moveLeft,
-            right: moveRight,
+          // Timer
+          Row(
+            children: [
+              const Icon(Icons.timer, color: Colors.yellow),
+              Text(" Time: ${maze.timer}", style: const TextStyle(color: Colors.white)),
+              const SizedBox(width: 20),
+            ],
+          ),
+
+          // Lives
+          Row(
+            children: [
+              const Icon(Icons.favorite, color: Colors.red),
+              Text(" Lives: ${maze.lives}", style: const TextStyle(color: Colors.white)),
+              const SizedBox(width: 20),
+            ],
           ),
         ],
       ),
+
+      backgroundColor: Colors.grey[900],
+
+      body: Consumer<MazeGeneratorLogicProvider>(
+        builder: (context, maze, child) {
+          return Column(
+            children: [
+              Expanded(
+                child: PackManBoard(
+                  turtlePositions: maze.turtleDirection,
+                  startAndEnding: maze.startAndEnding,
+                  pacmanPosition: maze.pacmanPositions,
+                  numberInRow: maze.numberInRows,
+                  rows: maze.rows,
+                  boardData: maze.boardData,
+                ),
+              ),
+
+              PacManControlButton(
+                resetBoard: maze.resetGame,
+                resetPacman: maze.resetPacmanPosition,
+                up: maze.moveUp,
+                down: maze.moveDown,
+                left: maze.moveLeft,
+                right: maze.moveRight,
+              ),
+            ],
+          );
+        },
+      ),
+    );
+  }
+
+  // GAME OVER POPUP
+  void gameTimerOver() {
+    showDialog(
+      context: context,
+      barrierDismissible: false, // prevents tap outside to close
+      builder: (context) {
+        return AlertDialog(
+          title: const Text("Game Over"),
+          content: const Text("Time is over!"),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context); // Close popup
+              },
+              child: const Text("OK"),
+            ),
+          ],
+        );
+      },
     );
   }
 }

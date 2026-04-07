@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:pacman/home/home_screen.dart';
+import 'package:pacman/logic/maze_generator_dfs.dart';
+import 'package:provider/provider.dart';
 
-void main(){
-  runApp(PacmanGame());
+void main() {
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => MazeGeneratorLogicProvider(),
+        ),
+      ],
+      child: PacmanGame(),
+    ),
+  );
 }
 
 class PacmanGame extends StatelessWidget {
@@ -10,8 +21,6 @@ class PacmanGame extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: HomeScreen(),
-    );
+    return MaterialApp(home: HomeScreen());
   }
 }
