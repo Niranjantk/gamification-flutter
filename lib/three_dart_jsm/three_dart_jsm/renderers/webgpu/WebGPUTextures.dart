@@ -234,7 +234,7 @@ class WebGPUTextures {
     this.samplerCache.clear();
   }
 
-  int _convertAddressMode(value) {
+  String _convertAddressMode(value) {
     var addressMode = GPUAddressMode.ClampToEdge;
 
     if (value == RepeatWrapping) {
